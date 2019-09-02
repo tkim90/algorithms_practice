@@ -99,7 +99,7 @@ class BST {
     return this;
   }
 
-  getMinValue = function (value) {
+  getMinValue(value) {
     let currentNode = this;
     while (currentNode.left !== null) {
       currentNode = currentNode.left;
@@ -107,3 +107,26 @@ class BST {
     return currentNode;
   }
 }
+
+let bst = new BST(10);
+bst.left = new BST(7);
+bst.right = new BST(8);
+bst.left.left = new BST(3);
+bst.right.right = new BST(10);
+
+ //    10
+ //    /\
+ //   7  8
+ //  /    \
+ // 3     10
+
+const count = function(node) {
+  console.log(node)
+  if (node) {
+    return count(node.left) + count(node.right) + 1;
+  } else {
+    return 0;
+  }
+}
+
+console.log('counts total nodes in bst: ', count(bst) === 5, 'actual: ', count(bst));
