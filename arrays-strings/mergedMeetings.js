@@ -38,49 +38,23 @@
 function mergeRanges(meetings) {
   if (meetings.length === 0) return [];
   
-  meetings = meetings.sort((a, b) => a.startTime - b.startTime);
+  sortedMeetings = meetings.sort((a, b) => a.startTime - b.startTime);
   
-  let mergedMeetings = [
-    {
-      startTime: meetings[0].startTime,
-      endTime: meetings[0].endTime
-    }
-  ];
+  let mergedMeetings = [sortedMeetings[0]];
 
-  for (let input of meetings) {
-    for (let result of mergedMeetings) {
-      // shift start
-      if (input.startTime < result.startTime && input.endTime < result.endTime) {
-        result.startTime = input.startTime;
-      // shift end
-      } else if (input.startTime > result.startTime && input.endTime > result.endTime) {
-        result.endTime = input.endTime;
-      // add new
-      } else if (input.startTime < result.startTime && input.endTime > result.endTime) {
-        mergedMeetings.push(input);
-      }
+  for (let i = 0; i < sortedMeetings.length; i++) {
+    let currentMeeting = sortedMeetings[i];
+    let lastMergedMeeting = mergedMeetings[mergedMeetings.length - 1];
+
+    if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
+      lastMergedMeeting.endTime = Math.max(currentMeeting.endTime, lastMergedMeeting.endTime);
+    } else {
+      mergedMeetings.push(currentMeeting);
     }
   }
 
-  return mergedMeetings.sort((a, b) => a.startTime - b.startTime);
+  return mergedMeetings;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Tests
 
