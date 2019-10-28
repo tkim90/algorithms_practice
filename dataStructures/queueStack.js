@@ -1,5 +1,13 @@
-const Queue = require('./queueObj.js');
+// Queue implementation with Stack.
 
-var q = new Queue();
-q.enqueue('q');
-console.log(q);
+const Stack = require('./stackObj.js');
+
+class QueueWithStack {
+  constructor() {
+    this.storage = new Stack();
+    this.first = 0;
+  }
+
+  enqueue(val) {
+  }
+}

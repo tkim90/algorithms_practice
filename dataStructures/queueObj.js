@@ -13,6 +13,7 @@ class Queue {
     let toBeDeleted = this.storage[this.first];
     delete this.storage[this.first];
     this.first++;
+    return toBeDeleted;
   }
 
   size() {
