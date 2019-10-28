@@ -1,0 +1,5 @@
+function StackLinkedList () {
+
+}
+
+Stack.prototype
