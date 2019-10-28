@@ -27,12 +27,15 @@ class StackLinkedList {
   }
 }
 
-var s = new StackLinkedList();
-console.log(`Adding: ${s.push()}`);
-console.log(`Adding: ${s.push()}`);
-console.log(`Adding: ${s.push()}`);
-console.log(`Adding: ${s.push()}`);
-console.log(`Adding: ${s.push()}`);
-console.log(`Removing: ${s.pop()}`);
-console.log(`Stack: ${JSON.stringify(s.storage)}`);
+// var s = new StackLinkedList();
+// console.log(`Adding: ${s.push()}`);
+// console.log(`Adding: ${s.push()}`);
+// console.log(`Adding: ${s.push()}`);
+// console.log(`Adding: ${s.push()}`);
+// console.log(`Adding: ${s.push()}`);
+// console.log(`Removing: ${s.pop()}`);
+// console.log(`Stack: ${JSON.stringify(s.storage)}`);
+// console.log(s.size);
 // console.log(`Stack: ${s.storage.traverseList()}`);
+
+module.exports = StackLinkedList;
