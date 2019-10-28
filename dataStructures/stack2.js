@@ -11,7 +11,7 @@ class StackLinkedList {
   push() {
     this.idx++;
     this.size++;
-    this.storage.addToHead(this.idx);
+    this.storage.addToTail(this.idx);
     return this.storage.head.val;
   }
 
@@ -33,5 +33,6 @@ console.log(`Adding: ${s.push()}`);
 console.log(`Adding: ${s.push()}`);
 console.log(`Adding: ${s.push()}`);
 console.log(`Adding: ${s.push()}`);
-// console.log(`Removing: ${s.pop()}`);
+console.log(`Removing: ${s.pop()}`);
 console.log(`Stack: ${JSON.stringify(s.storage)}`);
+// console.log(`Stack: ${s.storage.traverseList()}`);
