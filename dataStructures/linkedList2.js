@@ -94,3 +94,8 @@ class LinkedList {
 // console.log(l.head);
 // console.log(l);
 // l.traverseList();
+
+module.exports = { 
+  Node,
+  LinkedList
+};
