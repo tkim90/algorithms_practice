@@ -21,9 +21,26 @@ class StackQueue {
     while (this.q.size() > 1) {
       this.dummy.enqueue(this.q.dequeue());
     }
-    this.q.dequeue();
+    const popped = this.q.dequeue();
     this.q = this.dummy;
     this.dummy = new Queue();
+    return popped;
+  }
+
+  top() {
+    // traverse to last element and return it
+    while(this.q.size() > 1) {
+      this.dummy.enqueue(this.q.dequeue());
+    }
+    const top = this.q.dequeue();
+    this.dummy.enqueue(top);
+    this.q = this.dummy;
+    this.dummy = [];
+    return top;
+  }
+
+  empty() {
+    return this.top ? false : true;
   }
 }
 
@@ -32,6 +49,10 @@ class StackQueue {
 // stack.push(45);
 // stack.push(100);
 // stack.push(5);
+// stack.pop();
+// console.log(stack);
+// console.log(`top: ${stack.top()}`);
+// console.log(stack.empty());
 // stack.pop();
 // stack.pop();
 // stack.push(8);
