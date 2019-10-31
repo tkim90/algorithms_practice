@@ -41,3 +41,5 @@ stack.push(45);
 stack.pop();
 stack.pop();  
 console.log(stack);
+
+module.exports = Stack;
