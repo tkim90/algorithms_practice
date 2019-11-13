@@ -16,24 +16,100 @@
 //         N: addToTail
 //     return tail (since that item was just added to the tail)
 
-
-class LRUCacheDoublyLinkedList {
-  constructor(capacity) {
-    this.capacity = capacity;
-  }
-
-  get(key) {
-
-  }
-
-  put(key, value) {
-    
+class Node {
+  constructor(key, value) {
+    this.key = key;
+    this.value = value;
+    this.next = null;
+    this.prev = null;
   }
 }
 
-/** 
- * Your LRUCache object will be instantiated and called as such:
- * var obj = new LRUCache(capacity)
- * var param_1 = obj.get(key)
- * obj.put(key,value)
- */
+class LRUCache {
+  constructor(capacity = 3) {
+    this.capacity = capacity;
+    this.size = 0;
+    this.cache = {};
+    this.head = null;
+    this.tail = null;
+  }
+
+  get(key) {
+    const node = this.cache[key];
+    if (node) {
+      const val = node.value;
+      this.remove(key);
+      this.put(key, val);
+      console.log(`Get complete, moving ${key} to head.`)
+    } else {
+      return -1;
+    }
+  }
+
+  // add to head of linked list
+  put(key, value) {
+    const node = new Node(key, value);
+    this.ensureLimit();
+
+    if (!this.head) {
+      this.head = this.tail = node;
+    } else {
+      const oldHeadNode = this.head;
+      oldHeadNode.prev = node;
+      // node.next = oldHeadNode;
+      this.head = node;
+      // node.next = oldHeadNode;
+    }
+
+    this.cache[key] = this.head;
+    this.size++;
+    // console.log(`Insert complete: ${JSON.stringify(this.cache[key])}`)
+  }
+
+  ensureLimit() {
+    if (this.size === this.capacity) {
+      console.log(`At capacity. removing ${this.tail.value}.`);
+      this.remove(this.tail);
+    }
+  }
+
+  remove(key) {
+    const node = this.cache[key];
+    if (node === undefined) return -1;
+
+    if (node.prev !== null) {
+      node.prev.next = node.next;
+    } else {
+      this.head = node.next;
+    }
+
+    if (node.next !== null) {
+      node.next.prev = node.prev;
+    } else {
+      this.tail = node.prev;
+    }
+    // console.log(`Removing ${key}...`)
+    delete this.cache[key];
+    this.size--;
+    // console.log(`Confirming removal: ${this.cache[key]}`)
+  }
+
+  clear() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+    this.cache = {};
+  }
+}
+
+const lru = new LRUCache();
+lru.put(1,1);
+lru.put(2,2);
+lru.get(1);
+lru.put(3,3);
+lru.put(4,4);
+console.log(`Head: ${JSON.stringify(lru.head)}`)
+console.log(`Tail: ${JSON.stringify(lru.tail)}`)
+// console.log(lru.head.value, lru.tail.value, lru.size, lru.capacity);
+
+// lru.put(3,3);
