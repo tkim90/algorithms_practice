@@ -15,3 +15,25 @@
 //         Y: removeFromhead()
 //         N: addToTail
 //     return tail (since that item was just added to the tail)
+
+
+class LRUCacheDoublyLinkedList {
+  constructor(capacity) {
+    this.capacity = capacity;
+  }
+
+  get(key) {
+
+  }
+
+  put(key, value) {
+    
+  }
+}
+
+/** 
+ * Your LRUCache object will be instantiated and called as such:
+ * var obj = new LRUCache(capacity)
+ * var param_1 = obj.get(key)
+ * obj.put(key,value)
+ */

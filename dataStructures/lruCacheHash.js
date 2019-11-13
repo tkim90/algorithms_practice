@@ -1,24 +1,58 @@
 // LRU cache Hash/Object implementation.
 
-var LRUCacheHash = function(capacity) {
-  this.size = 0;
-  this.cache = {};
-  this.store = {};
-  this.count = 0;
-  this.capacity = capacity;
-};
+class LRUCacheHash {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.size = 0;
+    this.count = 0;
+    this.store = {};
+    this.cache = {};
+  }
 
-LRUCache.prototype.get = function(key) {
+  get(key) {
+    if(!(key in this.cache)) return -1;
 
-};
+    this.store[key] = this.count;
+    this.count++;
+    return this.cache[key];
+  }
 
-LRUCache.prototype.getMin = function() {
+  getMin() {
+    let min = null;
+    for (let key in this.store) {
+      if (min === null) min = key;
+      else if (this.store[key] < this.store[min]) min = key;
+    }
 
+    return min;
+  }
+
+  put(key, value) {
+    if (!(key in this.cache)) this.size++;
+
+    if (this.size > this.capacity) {
+      let min = this.getMin();
+
+      delete this.store[min];
+      delete this.cache[min];
+      this.size--;
+    }
+
+    this.store[key] = this.count;
+    this.count++;
+    this.cache[key] = value;
+  }
 }
 
-LRUCache.prototype.put = function(key, value) {
+// TEST //
+let lru = new LRUCacheHash(2);
+lru.put(1,1);
+lru.put(2,2);
+console.log(lru);
+lru.get(1);
+lru.put(3,3);
+console.log(lru);
 
-};
 
 /** 
  * Your LRUCache object will be instantiated and called as such:
