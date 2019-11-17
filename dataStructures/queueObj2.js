@@ -1,23 +1,29 @@
 class Queue {
   constructor() {
-    this.storage = {};
-    this.first = 0;
-    this.last = 0;
+    this._storage = {};
+    this._first = 0;
+    this._last = 0;
   }
 
-  enqueue(val) {
-    this.storage[this.last++] = val;
+  enqueue(value) {
+    this._storage[this._last] = value;
+    this._last++;
+    return value;
   }
 
   dequeue() {
-    let toBeDeleted = this.storage[this.first];
-    delete this.storage[this.first];
-    this.first++;
-    return toBeDeleted;
+    let deleted = this._storage[this._first];
+    delete this._storage[this._first];
+    if (this._first !== 0) this._first++;
+    return deleted;
   }
 
   size() {
-    return this.last - this.first;
+    return this._last - this._first;
+  }
+
+  isEmpty() {
+    return this.size() === 0 ? true : false;
   }
 }
 
@@ -25,7 +31,11 @@ class Queue {
 // q.enqueue(0);
 // q.enqueue(1);
 // q.enqueue(2);
+// console.log(q.dequeue());
 // q.dequeue();
-// console.log(q.size());
+// q.dequeue();
+// q.enqueue(0);
+// q.enqueue(1);
+// console.log(q)
 
-module.exports = Queue;
+module.exports.Queue = Queue;
