@@ -25,6 +25,18 @@ describe('Pop() - regression test', () => {
   });
 });
 
+describe('Size() & isEmpty() - regression test', () => {
+  const s = new Stack();
+  
+  it('Should return true if empty', () => {
+    expect(s.isEmpty()).to.eql(true);
+  });
+
+  it('Should return size 0', () => {
+    expect(s.size()).to.eql(0);
+  });
+});
+
 describe('Add and remove from an empty Stack', () => {
   const s = new Stack();
   
