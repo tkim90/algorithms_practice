@@ -6,15 +6,15 @@ class Stack {
     this._size = 0;
   }
 
-  push(val) {
-    this._storage[this._size] = val;
+  push(value) {
+    this._storage[this._size] = value;
     this._size++;
-    return val;
+    return value;
   }
 
   pop() {
     this._size && this._size--;
-    let deleted = this._storage[this._size];
+    const deleted = this._storage[this._size];
     delete this._storage[this._size];
 
     return deleted;
@@ -29,17 +29,13 @@ class Stack {
   }
 }
 
-var stack = new Stack();
-stack.push(50);
-stack.push(45);
+// var stack = new Stack();
+// stack.push(50);
+// stack.push(45);
 // stack.push(100);
-// stack.push(5);
-// stack.pop();
-// stack.pop();
-// stack.push(8);
-// stack.push(8);
-stack.pop();
-stack.pop();  
-console.log(stack);
+// console.log(stack.pop());
+// console.log(stack.pop());
+// console.log(stack._size);
+// console.log(stack);
 
-module.exports = Stack;
+module.exports.Stack = Stack;
