@@ -1,16 +1,3 @@
-//////////////////////////////////////////////////////////////////
-// Implementation #1:
-// Store nodes and edges in objects
-//
-// Using objects to store nodes and edges has the benefit of
-// constant-time look-up when looking for any node or edge.
-// This implementation can accept any data-type that can be
-// represented as a string (keys of objects are strings).
-// Lastly, this solution is quite space efficient because hash
-// tables only occupy only slightly more space than is needed
-// to store the underlying data set.
-//////////////////////////////////////////////////////////////////
-
 class Graph {
   constructor() {
     this._graph = {};

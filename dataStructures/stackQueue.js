@@ -1,7 +1,7 @@
 // Stack implementation with Queues.
 const Queue = require('./queueObj.js');
 
-class StackQueue {
+class Stack {
   constructor() {
     this.q = new Queue();
     this.dummy = new Queue();
@@ -39,24 +39,9 @@ class StackQueue {
     return top;
   }
 
-  empty() {
+  isEmpty() {
     return this.top ? false : true;
   }
 }
 
-// var stack = new StackQueue();
-// stack.push(50);
-// stack.push(45);
-// stack.push(100);
-// stack.push(5);
-// stack.pop();
-// console.log(stack);
-// console.log(`top: ${stack.top()}`);
-// console.log(stack.empty());
-// stack.pop();
-// stack.pop();
-// stack.push(8);
-// stack.push(8);
-// stack.pop();
-// stack.pop();
-// console.log(stack);
+module.exports.Stack = Stack;
