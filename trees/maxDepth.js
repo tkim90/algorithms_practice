@@ -19,7 +19,25 @@
 // DFS
 // By definition, the depth of a binary tree is the number of steps to the leaf node.
 // So we can get the depth by counting how many times we hit a "right" node.
+
+// * movie theater analogy - https://www.youtube.com/watch?v=D2cFSDfg0So
+// ask the person in the row below you what row they're in
+// they ask the person below them
+// continue all the way to the bottom
+// the last person will know that they're at row 0
+// bubble up the answer + 1 (my own row)
+
+// base: root is null => 0
+// recurse:
+  // left: recurse(left)
+  // right: recurse(right)
+  // return Max(left, right) + 1;
+
 const maxDepth = (root) => {
-  if (root === null) return 0;
-  return Math.max(maxDepth(root.left), maxDepth(root.right) + 1);
+  if (root === nul) return 0;
+
+  let left = maxDepth(root.left);
+  let right = maxDepth(root.right);
+
+  return Math.max(left, right) + 1;
 };

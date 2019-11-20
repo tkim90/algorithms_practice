@@ -15,24 +15,24 @@
 // creates a closure for the 'memo'ized results from past recursive calls
 
 
-// const fib = ((n) => {
-//   let memo = {};
+const fib = ((n) => {
+  let memo = {};
 
-//   function memoIt(n) {
-//     if (n in memo) {
-//       console.log(`Memoizing...${memo[n]}`)
-//       return memo[n];
-//     }
+  function memoIt(n) {
+    if (n in memo) {
+      console.log(`Memoizing...${memo[n]}`)
+      return memo[n];
+    }
 
-//     if (n === 0 || n === 1) return n;
-//     let result = fib(n - 1) + fib(n - 2);
+    if (n === 0 || n === 1) return n;
+    let result = fib(n - 1) + fib(n - 2);
 
-//     memo[n] = result;
-//     return result;
-//   }
+    memo[n] = result;
+    return result;
+  }
 
-//   return memoIt;
-// })();
+  return memoIt;
+})();
 
 // fib(0) = 0
 // fib(1) = 1
@@ -41,37 +41,37 @@
 
 // 0, 1, 1, 2, 3, 5, 8, 13
 
-// console.log(`It should be 0: ${fib(0)}`);
-// console.log(`It should be 1: ${fib(1)}`);
-// console.log(`It should be 3: ${fib(4)}`);
-// console.log(`It should be 5: ${fib(5)}`);
-// console.log(`It should be 13: ${fib(7)}`);
-// console.log('---------')
+console.log(`It should be 0: ${fib(0)}`);
+console.log(`It should be 1: ${fib(1)}`);
+console.log(`It should be 3: ${fib(4)}`);
+console.log(`It should be 5: ${fib(5)}`);
+console.log(`It should be 13: ${fib(7)}`);
+console.log('---------')
 
 // a better way is to create a generic 'memoize' function that
 // memoizes any function given
 
-const fib2 = (n) => {
-  if (n === 0 || n === 1) return n;
-  return fib2(n - 1) + fib2(n - 2);
-}
+// const fib2 = (n) => {
+//   if (n === 0 || n === 1) return n;
+//   return fib2(n - 1) + fib2(n - 2);
+// }
 
-const memoize = (func) => {
-  let memo = {};
-  let slice = Array.prototype.slice;
+// const memoize = (func) => {
+//   let memo = {};
+//   let slice = Array.prototype.slice;
 
-  return () => {
-    const args = slice.call(arguments);
-    console.log(`Arguments: ${JSON.stringify(args)}`)
+//   return () => {
+//     const args = slice.call(arguments);
+//     console.log(`Arguments: ${JSON.stringify(args)}`)
 
-    if (args in memo) {
-      console.log('Memoizing...')
-      return memo[args];
-    } else {
-      return (memo[args] = func.apply(this, args));
-    }
-  }
-};
+//     if (args in memo) {
+//       console.log('Memoizing...')
+//       return memo[args];
+//     } else {
+//       return (memo[args] = func.apply(this, args));
+//     }
+//   }
+// };
 
 // console.log(`It should be 0: ${memoize(fib2)(0)}`);
 // console.log(`It should be 1: ${fib(1)}`);
