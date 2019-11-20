@@ -41,3 +41,13 @@ const maxDepth = (root) => {
 
   return Math.max(left, right) + 1;
 };
+
+var maxDepth = function(root) {
+  const traverse = (current, depth = 0) => {
+    if (current === null) return depth;
+    depth++;
+    return Math.max(traverse(current.left, depth), traverse(current.right, depth));;
+  };
+  
+  return traverse(root);
+};
