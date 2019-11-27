@@ -1,11 +1,11 @@
 // write a promise from scratch.
 
 const wait = (time, cb) => new Promise((resolve, reject) => {
-  return setTimeout(resolve(cb.apply(this)), time);
+  return setTimeout(resolve, time);
 })
   .then( v => console.log('done processing.'));
 
-wait(500, function() { console.log('HELLO') });
+wait(500);
 
 
 // async function
