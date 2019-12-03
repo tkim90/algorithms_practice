@@ -28,15 +28,21 @@ export default class HashTable {
 
   resize(newLimit) {
     // save oldStorage
-    // check if new limit is greater than current limit
-    // reset this limit, storage, size
+    const oldStorage = this._storage;
 
-    // loop thru storage
-      // loop thru bucket
-        // rehash every key/val:
-        // get new hash value from key and limit
-        // insert key, val
-    // ? bind to this
+    if (newLimit <= this._limit) return ;
+
+    this._limit = newLimit;
+    this._storage = LimitedArray(this._limit);
+    this.size = 0;
+
+    oldStorage.forEach((bucket) => {
+      if (!bucket) { return ; }
+      for (let i = 0; i < bucket.length; i++) {
+        let tuple = bucket[i];
+        this.insert(tuple[0], tuple[1]);
+      }
+    });
   }
 }
 
