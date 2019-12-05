@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/find-peak-element/submissions/
 
+// O(n) time
 var findPeakElement = function(nums) {
   if (nums.length === 0) return -1;
   if (nums.length === 1) return 0;
@@ -15,3 +16,35 @@ var findPeakElement = function(nums) {
   }
   return -1;
 };
+
+
+// O(logn) time - binary search
+
+var findPeakElement2 = function(nums) {
+  if (nums.length === 0) return -1;
+  if (nums.length === 1) return 0;
+  
+  let left = 0;
+  let right = nums.length - 1;
+  
+  while (left < right) {
+    let pivot = Math.floor((right + left) / 2);
+
+    if (pivot === 0 && nums[pivot] > nums[pivot + 1]) {
+      return pivot;
+    } else if (pivot === nums.length - 1 && nums[pivot] > nums[pivot - 1]) {
+      return pivot;
+    } else if (nums[pivot] > nums[pivot - 1] && nums[pivot] > nums[pivot + 1]) {
+      return pivot;
+    }
+    
+    if (nums[pivot] < nums[pivot + 1]) {
+      left = pivot + 1;
+    } else {
+      right = pivot - 1;
+    }
+  }
+  return right;
+};
+
+console.log(findPeakElement2([1,2]));
