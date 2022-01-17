@@ -18,6 +18,6 @@
   "homepage": "https://github.com/tkim90/algorithms_practice#readme",
   "dependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.0"
+    "mocha": "^9.1.4"
   }
 }
