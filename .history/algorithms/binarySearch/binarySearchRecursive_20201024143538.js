@@ -1,5 +1,5 @@
 // assumption: arr is sorted
-// [1, 3, 5, 7, 10], 1
+[1, 3, 5, 7, 10], 1
 const binarySearchRecursive = (arr, target, left = 0, right = arr.length - 1) => {
   let mid = Math.round((left + right) / 2);
 
